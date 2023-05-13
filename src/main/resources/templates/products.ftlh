@@ -8,7 +8,7 @@
     <title>BuySell</title>
 </head>
 <body>
-<h1>Хулигаз</h1>
+<h1>Хулигаз | <a href="/login">Войти</a> </h1>
 <h4>Товары со всей России</h4>
 <form action="/" method="get">
     Поиск по названию объявления: <input type="text" name="title"><br>

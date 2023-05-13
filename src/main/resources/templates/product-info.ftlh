@@ -8,7 +8,7 @@
     <title>BuySell</title>
 </head>
 <body>
-<h1>Хулигаз</h1>
+<h1>Хулигаз | <a href="/login">Войти</a></h1>
 <h4>Подробная инфа о товаре</h4>
 <#list images as img>
     <img src="/images/${img.id}" height="60px"/><br><br>
