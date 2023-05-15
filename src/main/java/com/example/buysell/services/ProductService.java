@@ -25,12 +25,20 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public void saveProduct(Principal principal, Product product, MultipartFile file1, MultipartFile file2, MultipartFile file3) throws IOException {
+    public void saveProduct(
+            Principal principal,
+            Product product,
+            MultipartFile file1,
+            MultipartFile file2,
+            MultipartFile file3
+    ) throws IOException {
         product.setUser(getUserByPrincipal(principal));
         Image image1;
         Image image2;
         Image image3;
 
+        //TODO
+        // говнокод надо исправить
         if (file1.getSize()!=0){
             image1 =toImageEntity(file1);
             image1.setPreviewImage(true);
@@ -51,21 +59,22 @@ public class ProductService {
         Product productFromDB =productRepository.save(product);
         productFromDB.setPreviewImageId(productFromDB.getImages().get(0).getId());
         productRepository.save(product);
-        productRepository.save(product);
     }
 
     public User getUserByPrincipal(Principal principal) {
-        if (principal ==null) return new User();
+        if (principal == null) return new User();
         return userRepository.findByEmail(principal.getName());
     }
 
     private Image toImageEntity(MultipartFile file) throws IOException {
         Image image = new Image();
+
         image.setName(file.getName());
         image.setOriginalFilaName(file.getOriginalFilename());
         image.setContentType(file.getContentType());
         image.setSize(file.getSize());
         image.setBytes(file.getBytes());
+
         return image;
     }
 

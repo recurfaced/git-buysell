@@ -27,7 +27,10 @@ public class ProductController {
     }*/ // внедоение через конструктор, но можно через анотацию @RequiredArgsConstructor
 
     @GetMapping("/")
-    public String products(@RequestParam(name = "title",required = false) String title,Principal principal, Model model){
+    public String products(@RequestParam(name = "title", required = false) String title,
+                           Principal principal,
+                           Model model
+    ) {
         model.addAttribute("products",productService.listProducts(title));
         model.addAttribute("user", productService.getUserByPrincipal(principal));
         return "products";

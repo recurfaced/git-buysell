@@ -45,7 +45,6 @@ public class Product {
     private String city;
 
     @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "product")
-
     private List<Image> images = new ArrayList<>();
     private Long previewImageId;
     @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
