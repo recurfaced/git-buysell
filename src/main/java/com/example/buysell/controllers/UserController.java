@@ -19,7 +19,6 @@ public class UserController {
     public String login(){
         return "login";
     }
-
     @GetMapping("/registration")
     public String registration(){
         return "registration";
@@ -31,7 +30,7 @@ public class UserController {
             model.addAttribute("errorMessage","Пользователь с email:" + user.getEmail()+" уже существует ");
             return "registration";
         }
-        return "redirect:/ligin";
+        return "redirect:/login";
     }
 
     @GetMapping("/hello")

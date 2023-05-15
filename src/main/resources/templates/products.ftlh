@@ -8,10 +8,20 @@
     <title>BuySell</title>
 </head>
 <body>
-<h1>Хулигаз | <a href="/login">Войти</a> </h1>
+<h1>Хулигаз</h1><hr>
+<#if user.email??>
+    <h3>${user.name}</h3>
+    <form action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Выйти">
+    </form>
+    <#else>
+        <a href="/login">Войти</a>
+</#if>
+
 <h4>Товары со всей России</h4>
 <form action="/" method="get">
-    Поиск по названию объявления: <input type="text" name="title"><br>
+    Поиск по названию объявления: <input type="text" name="title">
     <input type="submit" value="Поиск"/>
 </form>
 <#list products as product>
@@ -23,18 +33,23 @@
     <#else>
     <h3>Товаров нет</h3>
 </#list>
-<hr>
-<h3>Создать новый товар</h3>
-<form action="/product/create" method="post" enctype="multipart/form-data">
-    Название объявления: <input type="text" name="title"/><br>
-    Описание объявления: <input type="text" name="description"/><br>
-    Цена: <input type="number" name="price"/><br>
-    Город: <input type="text" name="city"/><br>
-    Имя: <input type="text" name="author"/><br>
-    Первая фотка: <input type="file" name="file1"/><br><br>
-    Вторая фотка: <input type="file" name="file2"/><br><br>
-    Третья фотка: <input type="file" name="file3"/><br><br>
-    <input type="submit" value="Добавить товар"/>
-</form>
+<#if user.email??>
+
+    <hr>
+    <h3>Создать новый товар</h3>
+    <form action="/product/create" method="post" enctype="multipart/form-data">
+        Название объявления: <input type="text" name="title"/><br>
+        Описание объявления: <input type="text" name="description"/><br>
+        Цена: <input type="number" name="price"/><br>
+        Город: <input type="text" name="city"/><br>
+        Имя: <input type="text" name="author"/><br>
+        Первая фотка: <input type="file" name="file1"/><br><br>
+        Вторая фотка: <input type="file" name="file2"/><br><br>
+        Третья фотка: <input type="file" name="file3"/><br><br>
+        <input type="hidden" name="_csrf" value="${_csrf.token}">
+        <input type="submit" value="Добавить товар"/>
+    </form>
+</#if>
+
 </body>
 </html>

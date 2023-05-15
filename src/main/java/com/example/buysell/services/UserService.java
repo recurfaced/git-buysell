@@ -21,7 +21,7 @@ public class UserService {
         user.setActive(true);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.getRoles().add(Role.ROLE_USER);
-        log.info("Новый юзер создан с емайлом: {}",email);
+        log.info("Новый юзер создан с емайлом: {}", email);
         userRepository.save(user);
         return true;
     }
