@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -35,30 +36,30 @@ public class Product {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "description",columnDefinition = "text")
+    @Column(name = "description", columnDefinition = "text")
     private String description;
 
     @Column(name = "price")
-    private  int price;
+    private int price;
 
     @Column(name = "city")
     private String city;
 
-    @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY,mappedBy = "product")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "product")
     private List<Image> images = new ArrayList<>();
     private Long previewImageId;
-    @ManyToOne(cascade = CascadeType.REFRESH,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
     private LocalDateTime dateOfCreated;
 
 
     @PrePersist
-    private void init(){
-        dateOfCreated =LocalDateTime.now();
+    private void init() {
+        dateOfCreated = LocalDateTime.now();
     }
 
-    public void addImageToProduct(Image image){
+    public void addImageToProduct(Image image) {
         image.setProduct(this);
         images.add(image);
     }

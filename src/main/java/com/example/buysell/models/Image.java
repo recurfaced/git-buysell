@@ -27,11 +27,11 @@ public class Image {
     @Column(name = "isPreviewImage")
     private boolean isPreviewImage;
     @Lob
-    private byte[]bytes;
+    private byte[] bytes;
 
 
     @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
-    private  Product product;
+    private Product product;
 
 
 }
